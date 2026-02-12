@@ -326,15 +326,14 @@ a {
 .nav-link-cta:hover i {
   transform: translateX(3px);
 }
+
 /* ============================================
-   MOBILE MENU STYLES
+   MOBILE MENU STYLES - FINAL WORKING VERSION
    ============================================ */
 
 /* Hamburger Toggle Button */
 .nav-toggle {
     display: none;
-    flex-direction: column;
-    justify-content: space-between;
     width: 30px;
     height: 24px;
     background: none;
@@ -345,18 +344,38 @@ a {
     position: relative;
 }
 
+/* Add this to your CSS */
+.nav-toggle.active {
+    display: none;
+}
+
 .toggle-bar {
+    position: absolute;
+    left: 0;
     width: 100%;
     height: 3px;
     background-color: var(--brand-primary, #059669);
-    border-radius: 3px;
+    border-radius: 2px;
     transition: all 0.3s ease;
     transform-origin: center;
 }
 
-/* Animated X on active */
+.toggle-bar:nth-child(1) { 
+    top: 0; 
+}
+
+.toggle-bar:nth-child(2) { 
+    top: 10px;
+}
+
+.toggle-bar:nth-child(3) { 
+    top: 20px; 
+}
+
+/* X Animation */
 .nav-toggle.active .toggle-bar:nth-child(1) {
-    transform: rotate(45deg) translate(7px, 7px);
+    top: 10px;
+    transform: rotate(45deg);
 }
 
 .nav-toggle.active .toggle-bar:nth-child(2) {
@@ -365,7 +384,15 @@ a {
 }
 
 .nav-toggle.active .toggle-bar:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
+    top: 10px;
+    transform: rotate(-45deg);
+}
+
+/* Show on Mobile */
+@media (max-width: 991px) {
+    .nav-toggle {
+        display: block;
+    }
 }
 
 /* Mobile Menu Overlay */
@@ -561,13 +588,6 @@ body.menu-open {
     width: 100%;
 }
 
-/* Show on Mobile Only */
-@media (max-width: 991px) {
-    .nav-toggle {
-        display: flex;
-    }
-}
-
 /* Mobile Menu Animations */
 @media (max-width: 991px) {
     .mobile-nav-list li {
@@ -587,6 +607,7 @@ body.menu-open {
     .mobile-menu.active .mobile-nav-list li:nth-child(4) { transition-delay: 0.25s; }
     .mobile-menu.active .mobile-nav-list li:nth-child(5) { transition-delay: 0.3s; }
 }
+
 
 
 /* ===============================
@@ -1598,6 +1619,146 @@ body.menu-open {
   to { transform: rotate(360deg); }
 }
 
+
+/* ============================================
+   THANK YOU POPUP
+   ============================================ */
+
+.thank-you-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 20px;
+}
+
+.thank-you-overlay.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.thank-you-modal {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: popIn 0.4s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.thank-you-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+}
+
+.thank-you-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.thank-you-icon circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: circleAnim 0.6s ease 0.3s forwards;
+}
+
+.thank-you-icon path {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: checkAnim 0.4s ease 0.8s forwards;
+}
+
+@keyframes circleAnim {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes checkAnim {
+    to { stroke-dashoffset: 0; }
+}
+
+.thank-you-modal h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #059669;
+    margin-bottom: 15px;
+}
+
+.thank-you-modal p {
+    font-size: 16px;
+    color: #64748b;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.reply-note {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    color: #047857 !important;
+}
+
+.thank-you-btn {
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.thank-you-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(5, 150, 105, 0.4);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .thank-you-modal {
+        padding: 30px 20px;
+    }
+    
+    .thank-you-modal h3 {
+        font-size: 24px;
+    }
+    
+    .thank-you-btn {
+        width: 100%;
+    }
+}
+
+
 /* ===============================
    13) FOOTER - FINAL
    =============================== */
@@ -1674,20 +1835,6 @@ footer::before {
   color: white;
 }
 
-/* .social-link.email {
-  background: rgba(5, 150, 105, 0.15);
-  border: 1px solid rgba(5, 150, 105, 0.3);
-}
-.social-link.email i { 
-  color: var(--brand-primary); 
-}
-.social-link.email:hover {
-  background: var(--brand-primary);
-  border-color: var(--brand-primary);
-}
-.social-link.email:hover i { 
-  color: white; 
-} */
 
 
 /* ===============================

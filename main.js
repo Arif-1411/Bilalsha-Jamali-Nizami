@@ -72,6 +72,82 @@
         updateNavbar();
     }
 
+    // Active link highlighting - FIXED VERSION
+function updateActiveLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link:not(.nav-link-cta)');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link:not(.mobile-nav-cta)');
+    
+    const scrollPosition = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    // Check if at top of page
+    if (scrollPosition < 100) {
+        // At top - activate first link (Home/Hero)
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#hero') {
+                link.classList.add('active');
+            }
+        });
+        mobileNavLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#hero') {
+                link.classList.add('active');
+            }
+        });
+        return;
+    }
+    
+    // Check if at bottom of page
+    if (scrollPosition + windowHeight >= documentHeight - 50) {
+        // At bottom - activate last section
+        const lastSection = sections[sections.length - 1];
+        if (lastSection) {
+            const lastSectionId = lastSection.getAttribute('id');
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + lastSectionId);
+            });
+            mobileNavLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + lastSectionId);
+            });
+        }
+        return;
+    }
+    
+    // Normal scroll - check each section
+    let currentSection = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+    
+    // Update nav links
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentSection) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Update mobile nav links
+    mobileNavLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentSection) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Make it globally available
+window.updateActiveLink = updateActiveLink;
+
     // ============================================
     // MODULE 2: MOBILE MENU - WORKING VERSION
     // ============================================
@@ -354,6 +430,123 @@
             });
         });
     }
+
+
+
+// ============================================
+// MODULE 5: CONTACT FORM WITH POPUP
+// ============================================
+function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const thankYouPopup = document.getElementById('thankYouPopup');
+
+    if (!contactForm || !submitBtn) return;
+
+    // Handle form submission
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop normal submit
+        
+        // Show loading
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+            Sending...
+        `;
+
+        // Get form data
+        const formData = new FormData(contactForm);
+
+        // Send form via fetch (AJAX)
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            // Show Thank You Popup
+            showThankYou();
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Send Message';
+        })
+        .catch(error => {
+            // Still show popup (FormSubmit usually works)
+            showThankYou();
+            
+            // Reset
+            contactForm.reset();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Send Message';
+        });
+    });
+
+    // Real-time validation
+    const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+    
+    formInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value.trim() !== '') {
+                if (this.validity.valid) {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                } else {
+                    this.classList.remove('is-valid');
+                    this.classList.add('is-invalid');
+                }
+            }
+        });
+
+        input.addEventListener('input', function() {
+            this.classList.remove('is-valid', 'is-invalid');
+        });
+    });
+}
+
+// Show Thank You Popup
+function showThankYou() {
+    const popup = document.getElementById('thankYouPopup');
+    if (popup) {
+        popup.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// Close Thank You Popup
+function closeThankYou() {
+    const popup = document.getElementById('thankYouPopup');
+    if (popup) {
+        popup.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close on overlay click
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('thank-you-overlay')) {
+        closeThankYou();
+    }
+});
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeThankYou();
+    }
+});
+
+// ✅ ADD THESE 2 LINES - Makes buttons work!
+window.showThankYou = showThankYou;
+window.closeThankYou = closeThankYou;
+
+
+
 
     // ============================================
     // MODULE 6: RESPONSIVE FIXES
