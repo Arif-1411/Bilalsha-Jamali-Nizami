@@ -1,6 +1,6 @@
 // ============================================
-// SAMPLE.JS - PRODUCTION READY v2.0
-// Optimized, conflict-free, fully integrated
+// SAMPLE.JS - PRODUCTION READY v2.1
+// Mobile Menu Fixed
 // ============================================
 
 (function() {
@@ -21,7 +21,6 @@
                 once: true,
                 offset: 100,
                 disable: function() {
-                    // Disable on mobile for performance
                     return window.innerWidth < 768;
                 }
             });
@@ -45,27 +44,24 @@
         const navbar = document.getElementById('mainNav');
         if (!navbar) return;
 
-        let lastScroll = 0;
         let ticking = false;
 
         function updateNavbar() {
             const currentScroll = window.pageYOffset;
 
-            // Add/remove scrolled class
             if (currentScroll > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
 
-            // Update active link
-            updateActiveLink();
+            if (typeof updateActiveLink === 'function') {
+                updateActiveLink();
+            }
 
-            lastScroll = currentScroll;
             ticking = false;
         }
 
-        // Throttled scroll handler
         window.addEventListener('scroll', function() {
             if (!ticking) {
                 window.requestAnimationFrame(updateNavbar);
@@ -73,12 +69,11 @@
             }
         });
 
-        // Initial call
         updateNavbar();
     }
 
     // ============================================
-    // MODULE 2: MOBILE MENU
+    // MODULE 2: MOBILE MENU - WORKING VERSION
     // ============================================
     function initMobileMenu() {
         const navToggle = document.getElementById('navToggle');
@@ -87,44 +82,73 @@
         const mobileClose = document.getElementById('mobileClose');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        if (!navToggle || !mobileMenu || !mobileOverlay) return;
+        console.log('🔍 Mobile Menu Debug:', {
+            navToggle: !!navToggle,
+            mobileMenu: !!mobileMenu,
+            mobileOverlay: !!mobileOverlay,
+            mobileClose: !!mobileClose,
+            linksCount: mobileNavLinks.length
+        });
+
+        if (!navToggle || !mobileMenu) {
+            console.error('❌ Required elements missing!');
+            return;
+        }
 
         function openMenu() {
+            console.log('✅ Opening menu');
             navToggle.classList.add('active');
             mobileMenu.classList.add('active');
-            mobileOverlay.classList.add('active');
+            if (mobileOverlay) mobileOverlay.classList.add('active');
             document.body.classList.add('menu-open');
             document.body.style.overflow = 'hidden';
             
-            // Trap focus
-            mobileMenu.querySelector('a, button')?.focus();
+            setTimeout(() => {
+                const firstLink = mobileMenu.querySelector('.mobile-nav-link');
+                if (firstLink) firstLink.focus();
+            }, 100);
         }
 
         function closeMenu() {
+            console.log('✅ Closing menu');
             navToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
-            mobileOverlay.classList.remove('active');
+            if (mobileOverlay) mobileOverlay.classList.remove('active');
             document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
             
-            // Return focus to toggle button
-            navToggle?.focus();
+            setTimeout(() => {
+                if (navToggle) navToggle.focus();
+            }, 100);
         }
 
-        function toggleMenu() {
-            if (mobileMenu.classList.contains('active')) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
+        function toggleMenu(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isActive = mobileMenu.classList.contains('active');
+            isActive ? closeMenu() : openMenu();
         }
 
-        // Event listeners
+        // Event Listeners
         navToggle.addEventListener('click', toggleMenu);
-        mobileClose?.addEventListener('click', closeMenu);
-        mobileOverlay.addEventListener('click', closeMenu);
+        
+        if (mobileClose) {
+            mobileClose.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeMenu();
+            });
+        }
+        
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', function(e) {
+                if (e.target === mobileOverlay) {
+                    closeMenu();
+                }
+            });
+        }
 
-        // Close on link click
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -133,27 +157,30 @@
                     e.preventDefault();
                     closeMenu();
                     
-                    // Smooth scroll after menu closes
                     setTimeout(() => {
                         smoothScrollTo(href.substring(1));
-                    }, 300);
+                    }, 350);
                 }
             });
         });
 
-        // Close on Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
                 closeMenu();
             }
         });
 
-        // Close on desktop resize
-        window.addEventListener('resize', debounce(function() {
-            if (window.innerWidth > 991 && mobileMenu.classList.contains('active')) {
-                closeMenu();
-            }
-        }, 250));
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (window.innerWidth > 991 && mobileMenu.classList.contains('active')) {
+                    closeMenu();
+                }
+            }, 250);
+        });
+
+        console.log('✅ Mobile menu initialized!');
     }
 
     // ============================================
@@ -161,9 +188,8 @@
     // ============================================
     function initScrollEffects() {
         const navLinks = document.querySelectorAll('.nav-link:not(.nav-link-cta)');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link:not(.mobile-nav-cta)');
 
-        // Smooth scroll for desktop nav
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -174,7 +200,6 @@
             });
         });
 
-        // Active link highlighting
         function updateActiveLink() {
             const sections = document.querySelectorAll('section[id]');
             const scrollPosition = window.pageYOffset + 100;
@@ -185,14 +210,12 @@
                 const sectionId = section.getAttribute('id');
 
                 if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                    // Desktop nav
                     navLinks.forEach(link => {
                         link.classList.toggle('active', 
                             link.getAttribute('href') === '#' + sectionId
                         );
                     });
 
-                    // Mobile nav
                     mobileNavLinks.forEach(link => {
                         link.classList.toggle('active', 
                             link.getAttribute('href') === '#' + sectionId
@@ -202,11 +225,9 @@
             });
         }
 
-        // Expose to global scope for navbar module
         window.updateActiveLink = updateActiveLink;
     }
 
-    // Smooth scroll helper
     function smoothScrollTo(targetId) {
         const targetSection = document.getElementById(targetId);
         const navbar = document.getElementById('mainNav');
@@ -262,10 +283,8 @@
             }
         });
 
-        // Initial state
         updateIndicators();
 
-        // Update on window resize
         window.addEventListener('resize', debounce(function() {
             if (window.innerWidth <= 767) {
                 updateIndicators();
@@ -283,29 +302,24 @@
 
         if (!contactForm || !submitBtn) return;
 
-        // Handle form submission
         contactForm.addEventListener('submit', function(e) {
-            // Show loading state
             submitBtn.disabled = true;
             submitBtn.innerHTML = `
                 <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                 Sending...
             `;
 
-            // Safety timeout (10 seconds)
             setTimeout(() => {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = 'Send Message';
             }, 10000);
         });
 
-        // Check for success parameter in URL
         const urlParams = new URLSearchParams(window.location.search);
         
         if (urlParams.get('success') === 'true' && successMessage) {
             successMessage.style.display = 'block';
 
-            // Scroll to message
             setTimeout(() => {
                 successMessage.scrollIntoView({ 
                     behavior: 'smooth', 
@@ -313,16 +327,13 @@
                 });
             }, 100);
 
-            // Auto-hide after 5 seconds
             setTimeout(() => {
                 successMessage.style.display = 'none';
             }, 5000);
 
-            // Clean URL
             window.history.replaceState({}, '', window.location.pathname);
         }
 
-        // Real-time validation feedback
         const formInputs = contactForm.querySelectorAll('input, textarea');
         
         formInputs.forEach(input => {
@@ -350,11 +361,7 @@
     function initResponsiveFixes() {
         function applyFixes() {
             const isMobile = window.innerWidth <= 767;
-            
-            // Fix 1: YouTube Button
             fixYouTubeButton(isMobile);
-            
-            // Fix 2: Hero Section
             fixHeroSection(isMobile);
         }
 
@@ -412,13 +419,8 @@
             }
         }
 
-        // Apply on load
         applyFixes();
-
-        // Apply on resize
         window.addEventListener('resize', debounce(applyFixes, 250));
-        
-        // Apply on orientation change
         window.addEventListener('orientationchange', function() {
             setTimeout(applyFixes, 200);
         });
@@ -432,18 +434,15 @@
 
         images.forEach(img => {
             img.addEventListener('error', function() {
-                // Prevent infinite loop
                 if (this.dataset.fallbackApplied) return;
                 this.dataset.fallbackApplied = 'true';
 
-                // Generic fallback
                 this.style.cssText = `
                     background-color: #e2e8f0;
                     padding: 20%;
                     min-height: 200px;
                 `;
 
-                // Hero photo specific fallback
                 if (this.classList.contains('hero-photo')) {
                     this.style.display = 'none';
                     
@@ -472,10 +471,9 @@
     }
 
     // ============================================
-    // MODULE 8: ACCESSIBILITY ENHANCEMENTS
+    // MODULE 8: ACCESSIBILITY
     // ============================================
     function initAccessibility() {
-        // Skip to main content link
         const skipLink = document.createElement('a');
         skipLink.href = '#hero';
         skipLink.className = 'skip-to-main';
@@ -501,45 +499,11 @@
         });
         
         document.body.insertBefore(skipLink, document.body.firstChild);
-
-        // Announce page changes to screen readers
-        const announcer = document.createElement('div');
-        announcer.setAttribute('role', 'status');
-        announcer.setAttribute('aria-live', 'polite');
-        announcer.setAttribute('aria-atomic', 'true');
-        announcer.className = 'sr-only';
-        announcer.style.cssText = `
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-            white-space: nowrap;
-            border: 0;
-        `;
-        document.body.appendChild(announcer);
-
-        // Announce section changes
-        window.addEventListener('hashchange', function() {
-            const hash = window.location.hash.substring(1);
-            const section = document.getElementById(hash);
-            
-            if (section) {
-                const heading = section.querySelector('h1, h2, h3');
-                if (heading) {
-                    announcer.textContent = `Navigated to ${heading.textContent}`;
-                }
-            }
-        });
     }
 
     // ============================================
-    // UTILITY FUNCTIONS
+    // UTILITIES
     // ============================================
-    
-    // Debounce function
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -552,26 +516,23 @@
         };
     }
 
-    // Throttle function
-    function throttle(func, limit) {
-        let inThrottle;
-        return function(...args) {
-            if (!inThrottle) {
-                func.apply(this, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    }
-
-    // Console welcome message
-    console.log(
-        '%c🌟 Bilalsha Jamali Nizami Portfolio',
-        'font-size: 16px; font-weight: bold; color: #059669;'
-    );
-    console.log(
-        '%cDeveloped with modern web standards',
-        'font-size: 12px; color: #64748b;'
-    );
+    console.log('%c🌟 Bilalsha Jamali Nizami Portfolio', 'font-size: 16px; font-weight: bold; color: #059669;');
+    console.log('%cDeveloped with modern web standards', 'font-size: 12px; color: #64748b;');
 
 })();
+
+
+// Add to initMobileMenu() function, after line 183
+let touchStartX = 0;
+let touchEndX = 0;
+
+mobileMenu.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+mobileMenu.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) { // Swipe left to close
+        closeMenu();
+    }
+}, false);
