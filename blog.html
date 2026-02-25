@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Bilalsha Jamali Nizami</title>
+    <meta name="description" content="In-depth articles on Islamic scholarship, theology, and spiritual guidance.">
+    <meta name="author" content="Bilalsha Jamali Nizami">
+    <meta name="theme-color" content="#059669">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Raleway:wght@600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+    
+    <!-- Skip Link -->
+    <a href="#blog-content" class="skip-to-main">Skip to main content</a>
+
+    <!-- ================================
+         NAVBAR
+         ================================ -->
+    <nav class="navbar-premium" id="mainNav" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="navbar-inner">
+                <a class="navbar-brand-premium" href="index.html" aria-label="Bilalsha - Home">
+                    <span class="brand-text">Bilalsha</span>
+                    <span class="brand-dot" aria-hidden="true"></span>
+                </a>
+                
+                <ul class="nav-menu" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="index.html#hero" role="menuitem">Home</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="index.html#about" role="menuitem">About</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="index.html#services" role="menuitem">Services</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link active" href="index.html#engagement" role="menuitem">Engagement</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link nav-link-cta" href="index.html#contact" role="menuitem">
+                            <span>Contact</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                
+                <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu" aria-expanded="false">
+                    <span class="toggle-bar" aria-hidden="true"></span>
+                    <span class="toggle-bar" aria-hidden="true"></span>
+                    <span class="toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu-overlay" id="mobileOverlay" aria-hidden="true"></div>
+        <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+            <div class="mobile-menu-header">
+                <a class="mobile-brand" href="index.html">
+                    <span>Bilalsha</span>
+                    <span class="brand-dot" aria-hidden="true"></span>
+                </a>
+                <button class="mobile-close" id="mobileClose" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="mobile-nav-list" role="menu">
+                <li role="none"><a href="index.html#hero" class="mobile-nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="index.html#about" class="mobile-nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="index.html#services" class="mobile-nav-link" role="menuitem">Services</a></li>
+                <li role="none"><a href="index.html#engagement" class="mobile-nav-link active" role="menuitem">Engagement</a></li>
+                <li role="none"><a href="index.html#contact" class="mobile-nav-link mobile-nav-cta" role="menuitem">Contact Me</a></li>
+            </ul>
+            <div class="mobile-menu-footer">
+                <div class="mobile-social">
+                    <a href="https://www.youtube.com/@ishqemaskan9026" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.facebook.com/share/1CKQmBtL4p/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/bilalsha__tnr?igsh=a2oyaXBiMXoxOG0=" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================================
+         BLOG HERO
+         ================================ -->
+    <header class="blog-hero" id="blog-hero">
+        <div class="blog-hero-bg" aria-hidden="true">
+            <div class="hero-gradient"></div>
+            <div class="hero-pattern"></div>
+        </div>
+        <div class="container">
+            <div class="blog-hero-content" data-aos="fade-up">
+                <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#engagement">Engagement</a></li>
+                        <li aria-current="page" id="breadcrumb-current">Article</li>
+                    </ol>
+                </nav>
+                <h1 class="blog-title" id="blog-title">Loading...</h1>
+                <p class="blog-subtitle" id="blog-subtitle"></p>
+                <div class="blog-meta">
+                    <span class="meta-item">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        Bilalsha Jamali Nizami
+                    </span>
+                    <span class="meta-item">
+                        <i class="fas fa-calendar" aria-hidden="true"></i>
+                        <span id="blog-date"></span>
+                    </span>
+                    <span class="meta-item">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <span id="read-time">5 min read</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================================
+         BLOG CONTENT
+         ================================ -->
+    <main id="blog-content" class="blog-content-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    
+                    <!-- Article Content - Will be populated by JavaScript -->
+                    <article class="blog-article" id="article-content" data-aos="fade-up">
+                        <!-- Content loads here -->
+                    </article>
+
+                    <!-- Share Section -->
+                    <div class="blog-share" data-aos="fade-up">
+                        <h4>Share this article</h4>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn facebook" id="share-facebook" aria-label="Share on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="share-btn twitter" id="share-twitter" aria-label="Share on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="share-btn whatsapp" id="share-whatsapp" aria-label="Share on WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <button class="share-btn copy" id="copy-link" aria-label="Copy link">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Back Button -->
+                    <div class="blog-back" data-aos="fade-up">
+                        <a href="index.html#engagement" class="back-btn">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back to Engagement</span>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <aside class="blog-sidebar" data-aos="fade-left" data-aos-delay="200">
+                        
+                        <!-- Related Topics -->
+                        <div class="sidebar-card">
+                            <h4>Related Topics</h4>
+                            <ul class="related-list" id="related-topics">
+                                <!-- Populated by JavaScript -->
+                            </ul>
+                        </div>
+
+                        <!-- Quick Contact -->
+                        <div class="sidebar-card contact-card">
+                            <h4>Have Questions?</h4>
+                            <p>For scholarly discussions or lecture invitations, feel free to reach out.</p>
+                            <a href="index.html#contact" class="sidebar-btn">
+                                <i class="fas fa-envelope"></i>
+                                Contact Now
+                            </a>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="sidebar-card">
+                            <h4>Follow for Updates</h4>
+                            <div class="sidebar-social">
+                                <a href="https://www.youtube.com/@ishqemaskan9026" target="_blank" rel="noopener noreferrer" class="social-link yt">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="https://www.facebook.com/share/1CKQmBtL4p/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link fb">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://www.instagram.com/bilalsha__tnr?igsh=a2oyaXBiMXoxOG0=" target="_blank" rel="noopener noreferrer" class="social-link ig">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================================
+         FOOTER
+         ================================ -->
+    <footer class="py-5" role="contentinfo">
+        <div class="container position-relative" style="z-index: 1;">
+            <div class="row align-items-center gy-4">
+                <div class="col-md-6 text-center text-md-start">
+                    <span class="fw-bold fs-4 text-white">Bilalsha <span style="color: #34D399;">Jamali Nizami</span></span>
+                    <p class="text-white-50 small mt-2 mb-0">&copy; <span id="currentYear">2024</span> Bilalsha Jamali Nizami. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://www.youtube.com/@ishqemaskan9026" class="social-link yt" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1CKQmBtL4p/?mibextid=wwXIfr" class="social-link fb" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com/bilalsha__tnr?igsh=a2oyaXBiMXoxOG0=" class="social-link ig" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html>
