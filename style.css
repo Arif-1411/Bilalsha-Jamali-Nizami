@@ -3272,6 +3272,9 @@ footer::before {
     }
 }
 
+
+
+
 /* ===================================
    FOOTER - MOBILE RESPONSIVE FIXES
    =================================== */
@@ -3315,11 +3318,10 @@ footer .text-white-50 {
     opacity: 0.7;
 }
 
-/* Social Links Container */
-footer .d-flex.gap-3 {
-    gap: 12px !important;
-    flex-wrap: wrap;
-    justify-content: center;
+/* Social Links Container - FIXED */
+footer .col-md-6 .d-flex {
+    gap: 32px !important;
+    flex-wrap: nowrap !important;
 }
 
 /* Social Links - Enhanced */
@@ -3434,7 +3436,7 @@ footer .d-flex.gap-3 {
         justify-content: center !important;
     }
     
-    footer .d-flex.gap-3 {
+    footer .col-md-6 .d-flex {
         margin-top: 8px;
     }
 }
@@ -3471,8 +3473,8 @@ footer .d-flex.gap-3 {
         font-size: 0.8rem;
     }
     
-    footer .d-flex.gap-3 {
-        gap: 16px !important;
+    footer .col-md-6 .d-flex {
+        gap: 24px !important;
         justify-content: center;
     }
     
@@ -3517,8 +3519,8 @@ footer .d-flex.gap-3 {
         font-size: 18px;
     }
     
-    footer .d-flex.gap-3 {
-        gap: 12px !important;
+    footer .col-md-6 .d-flex {
+        gap: 20px !important;
     }
 }
 
@@ -3541,10 +3543,12 @@ footer .d-flex.gap-3 {
         font-size: 16px;
     }
     
-    footer .d-flex.gap-3 {
-        gap: 10px !important;
+    footer .col-md-6 .d-flex {
+        gap: 16px !important;
     }
 }
+
+
 
 /* ===================================
    NAVBAR - ADDITIONAL MOBILE FIXES
@@ -3753,3 +3757,33 @@ body.menu-open {
 body.menu-open {
     top: calc(var(--scroll-position, 0) * -1px);
 }
+
+
+
+/* ===================================
+   FOOTER SOCIAL ICONS - FINAL FIX
+   =================================== */
+
+footer .col-md-6 .d-flex {
+    gap: 24px !important;
+    flex-wrap: nowrap !important;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    footer .col-md-6 .d-flex {
+        justify-content: flex-end;
+    }
+}
+
+footer .social-link {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+}
+
+
+

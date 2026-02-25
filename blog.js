@@ -3,14 +3,12 @@
  * Handles dynamic content loading based on URL parameters
  */
 
-// Blog content data - Your actual content
+// Blog content data
 const blogData = {
     'public-lectures': {
         title: 'The Spiritual Gnostics (Arifeen)',
         subtitle: 'Guardians of Ahl al-Sunnah — Exploring the Inseparable Bond of Shari\'ah and Tariqah',
-        icon: 'fas fa-microphone-alt',
         category: 'Public Lecture',
-        readTime: '12 min read',
         content: `
             <h2>The Dual Dimensions of Islam</h2>
             <p>Islam is an encompassment of two inseparable dimensions: <strong>Shari'ah</strong> (The Sacred Law) and <strong>Tariqah</strong> (The Spiritual Path). A believer's journey remains incomplete if either is neglected.</p>
@@ -61,6 +59,9 @@ const blogData = {
                     <li><strong>Shaykh Abdul Qadir al-Jilani</strong> — The Sultan of the Saints</li>
                     <li><strong>Imam al-Junayd al-Baghdadi</strong> — Master of the Spiritual Path</li>
                     <li><strong>Khwaja Moinuddin Chishti</strong> — Spreader of Islam in the Indian subcontinent</li>
+                    <li><strong>Ahmad Muhyiddin Noorishah Jeelani</strong> — The spiritual revivalist of Kerala and the founder of Jamia Nooriya, Pattikkad</li>
+                      
+                    
                 </ul>
             </div>
 
@@ -107,9 +108,7 @@ const blogData = {
     'debates-dialogue': {
         title: 'Ideological Deviations of Samastha',
         subtitle: 'The Authentic Principles of Ahl al-Sunnah vs. Contemporary Distortions',
-        icon: 'fas fa-comments',
         category: 'Debates & Dialogue',
-        readTime: '15 min read',
         content: `
             <h2>An Objective Analysis</h2>
             <p>This video series provides an objective analysis of the ideological shifts and doctrinal lapses occurring within the religious organization <strong>Samastha Kerala Jam'iyyathul Ulama</strong>, specifically concerning its departures from the authentic path of Ahl al-Sunnah wal-Jama'ah.</p>
@@ -211,9 +210,7 @@ const blogData = {
     'defense-ahlus-sunnah': {
         title: 'Is Music Anti-Islamic?',
         subtitle: 'An Objective Analysis — Moving Beyond Polarized Arguments',
-        icon: 'fas fa-shield-alt',
         category: 'Defense of Ahl al-Sunnah',
-        readTime: '18 min read',
         content: `
             <h2>A Balanced Perspective</h2>
             <p>Amidst the polarized arguments regarding the art of music and its Islamic dimensions, this video series presents a <strong>balanced and evidence-based perspective</strong>.</p>
@@ -321,78 +318,68 @@ const blogData = {
         `
     },
 
-    'digital-outreach': {
-        title: 'Digital Outreach',
-        subtitle: 'Traditional Sunni Scholarship Made Accessible for the Modern Age',
-        icon: 'fab fa-youtube',
-        category: 'Digital Outreach',
-        readTime: '7 min read',
-        content: `
-            <h2>Scholarship in the Digital Age</h2>
-            <p>The digital revolution has transformed how knowledge is shared and consumed. Recognizing this, we have embraced modern platforms to make traditional Sunni scholarship accessible to Muslims worldwide, regardless of their geographical location or educational background.</p>
-            
-            <div class="highlight-box">
-                <p>Our digital content maintains the same scholarly rigor as traditional learning while adapting presentation methods for contemporary audiences.</p>
-            </div>
+   'digital-outreach': {
+    title: 'Digital Outreach',
+    subtitle: 'The Modern Face of Scholarly Tradition',
+    category: 'Digital Outreach',
+    content: `
+        <h2>Bridging Tradition and Technology</h2>
+        <p>The digital revolution has fundamentally transformed the methods by which knowledge is disseminated and acquired. <strong>Bilalsha Jamali Nizami</strong> stands at the forefront of this evolution, blending a traditionalist oratory style rooted in the Sunni heritage with the accessibility of the modern age. His scholarly contributions continue to resonate deeply with Muslim audiences across Kerala and globally.</p>
+        
+        <div class="highlight-box">
+            <p>What distinguishes Bilalsha Jamali Nizami, beyond his profound classical erudition, is an analytical presentation style tailored for a contemporary audience. Moving away from mere emotional rhetoric or unsubstantiated critiques, he employs an academic approach that prioritizes scriptural evidence and logical discourse to address opposing viewpoints.</p>
+        </div>
 
-            <h2>YouTube Channel</h2>
-            <p>Our YouTube presence serves as a virtual classroom where seekers of knowledge can access:</p>
-            
-            <h3>Full-Length Lectures</h3>
-            <p>Comprehensive sessions covering various Islamic sciences, from Aqeedah to Fiqh, presented in a systematic and accessible manner. These lectures often span 30-60 minutes, allowing for in-depth exploration of topics.</p>
-            
-            <h3>Short Clips</h3>
-            <p>Bite-sized content addressing specific questions or concepts. These 2-5 minute videos are perfect for busy individuals seeking quick, authentic answers to common questions.</p>
-            
-            <h3>Live Sessions</h3>
-            <p>Interactive broadcasts where viewers can ask questions in real-time, fostering a sense of community and direct engagement with scholarship.</p>
+        <h2>YouTube Channel: A Virtual Academy</h2>
+        <p>His official YouTube channel functions as a <strong>"Digital Classroom"</strong> for seekers of knowledge. His lectures and dialogues are categorized to facilitate systematic learning:</p>
+        
+        <h3>Full-Length Lectures</h3>
+        <p>Comprehensive sessions providing in-depth explorations of various Islamic sciences, ranging from Aqeedah (Creed) to Fiqh (Jurisprudence).</p>
+        
+        <h3>Short Clips</h3>
+        <p>Concise and clear responses to daily life queries and complex theological concepts, perfect for quick reference.</p>
+        
+        <h3>Live Sessions</h3>
+        <p>Interactive broadcasts that foster direct engagement, allowing viewers to seek clarifications and interact with scholarship in real-time.</p>
 
-            <div class="blog-quote">
-                <p>Convey from me, even if it is one verse.</p>
-                <cite>— Prophet Muhammad ﷺ, Sahih Bukhari</cite>
-            </div>
-
-            <h2>Content Categories</h2>
-            
-            <div class="key-points">
-                <h4><i class="fas fa-video"></i> Video Series</h4>
-                <ul>
-                    <li><strong>Aqeedah Essentials</strong> — Fundamentals of Sunni belief</li>
-                    <li><strong>Hadith Explanations</strong> — Commentary on prophetic traditions</li>
-                    <li><strong>Fiqh Made Easy</strong> — Practical Islamic jurisprudence</li>
-                    <li><strong>Seerah Series</strong> — Life of the Prophet ﷺ</li>
-                    <li><strong>Contemporary Issues</strong> — Islamic perspectives on modern questions</li>
-                    <li><strong>Refutations</strong> — Defending Ahl al-Sunnah against distortions</li>
-                </ul>
-            </div>
-
-            <h2>Social Media Presence</h2>
-            <p>Beyond YouTube, we maintain active presence on multiple platforms:</p>
-            
-            <h3>Facebook</h3>
-            <p>Community engagement, event announcements, and sharing of beneficial content. Our Facebook page serves as a hub for community interaction and discussion.</p>
-            
-            <h3>Instagram</h3>
-            <p>Visual content including quotes, infographics, and short video clips designed for quick consumption and sharing.</p>
-
-            <h2>Impact & Reach</h2>
-            <p>Through digital outreach, we have been able to:</p>
+        <h2>Key Content Categories</h2>
+        
+        <div class="key-points">
+            <h4><i class="fas fa-folder-open"></i> Content Library</h4>
             <ul>
-                <li>Reach Muslims in areas with limited access to scholars</li>
-                <li>Provide authentic answers to common misconceptions</li>
-                <li>Build a global community of knowledge seekers</li>
-                <li>Preserve and disseminate classical Islamic teachings</li>
-                <li>Counter misinformation with verified scholarship</li>
+                <li><strong>Aqeedah Essentials</strong> — A breakdown of the foundational principles of the Sunni creed.</li>
+                <li><strong>Scriptural Exegesis</strong> — Authoritative commentaries on the Quran and Hadith, anchored in the traditional Sunni methodology.</li>
+                <li><strong>Fiqh Analysis</strong> — Rigorous examination and analysis of complex jurisprudential matters (Mas'alas).</li>
+                <li><strong>Historical Biographies (Seerah & Chronicles)</strong> — Analytical studies on the lives of the Prophet ﷺ, the Companions, the Successors (Tabi'un), the great Imams, and the Sufi saints.</li>
+                <li><strong>Contemporary Issues</strong> — Islamic perspectives and solutions to the multifaceted questions and challenges of the modern world.</li>
+                <li><strong>Defensive Scholarship (Refutations)</strong> — Evidence-based defenses of Ahl al-Sunnah principles against distorted interpretations and misinformation.</li>
             </ul>
+        </div>
 
-            <h2>Subscribe & Support</h2>
-            <p>We invite you to subscribe to our channels and share beneficial content with others. Every share helps spread authentic Islamic knowledge and contributes to the preservation of our scholarly tradition.</p>
-            
-            <div class="highlight-box">
-                <p>The one who guides to good is like the one who does it. Help us spread authentic knowledge by sharing our content with family and friends.</p>
-            </div>
-        `
-    }
+        <h2>Social Media Presence</h2>
+        <p>Beyond YouTube, he maintains an active presence across multiple digital platforms:</p>
+        
+        <h3>Facebook</h3>
+        <p>A hub for scholarly notes, event announcements, and the sharing of beneficial insights for community engagement.</p>
+        
+        <h3>Instagram</h3>
+        <p>A repository of visual content, including curated quotes, infographics, and short-form educational videos.</p>
+
+        <h2>Social Impact</h2>
+        <p>The scholarly interventions of Bilalsha Jamali Nizami are driving significant social transformation by:</p>
+        
+        <ul>
+            <li>Providing authentic corrections to common religious misconceptions.</li>
+            <li>Offering a reliable and verified source of knowledge for spiritual seekers.</li>
+            <li>Preserving classical Sunni teachings through the innovative use of modern technology.</li>
+            <li>Countering misinformation with verified scholarship to foster an informed and aware community.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <p>The one who guides to good is like the one who does it. Help us spread authentic knowledge by subscribing to our channels and sharing content with family and friends.</p>
+        </div>
+    `
+}
 };
 
 // Initialize blog page
@@ -404,7 +391,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initBlogPage() {
-    // Get topic from URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const topic = urlParams.get('topic');
     
@@ -417,8 +403,6 @@ function initBlogPage() {
 
 function renderBlogContent(topic) {
     const data = blogData[topic];
-    const today = new Date();
-    const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     
     // Update page title
     document.title = `${data.title} - Bilalsha Jamali Nizami`;
@@ -432,8 +416,6 @@ function renderBlogContent(topic) {
     // Update hero section
     document.getElementById('blog-title').textContent = data.title;
     document.getElementById('blog-subtitle').textContent = data.subtitle;
-    document.getElementById('blog-date').textContent = dateStr;
-    document.getElementById('read-time').textContent = data.readTime;
     document.getElementById('breadcrumb-current').textContent = data.category || data.title;
     
     // Update article content
@@ -497,12 +479,10 @@ function renderError() {
         </div>
     `;
     
-    // Hide meta info and other sections
-    const blogMeta = document.querySelector('.blog-meta');
+    // Hide share and back sections
     const blogShare = document.querySelector('.blog-share');
     const blogBack = document.querySelector('.blog-back');
     
-    if (blogMeta) blogMeta.style.display = 'none';
     if (blogShare) blogShare.style.display = 'none';
     if (blogBack) blogBack.style.display = 'none';
 }
@@ -511,23 +491,7 @@ function initShareButtons() {
     const pageUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent(document.getElementById('blog-title')?.textContent || 'Article');
     
-    const facebookBtn = document.getElementById('share-facebook');
-    const twitterBtn = document.getElementById('share-twitter');
     const whatsappBtn = document.getElementById('share-whatsapp');
-    
-    if (facebookBtn) {
-        facebookBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank', 'width=600,height=400');
-        });
-    }
-    
-    if (twitterBtn) {
-        twitterBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.open(`https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`, '_blank', 'width=600,height=400');
-        });
-    }
     
     if (whatsappBtn) {
         whatsappBtn.addEventListener('click', function(e) {
