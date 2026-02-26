@@ -853,7 +853,7 @@ a {
     z-index: 2;
 }
 
-/* ── Overlay — simple directional ── */
+/* ── Overlay ── */
 .hero-bg-overlay {
     position: absolute;
     inset: 0;
@@ -867,7 +867,7 @@ a {
     );
 }
 
-/* ── Content — NO glass card, direct on image ── */
+/* ── Content Wrapper ── */
 .hero-content-wrapper {
     position: relative;
     z-index: 5;
@@ -882,7 +882,6 @@ a {
     overflow: visible;
 }
 
-/* Remove glass pseudo-elements */
 .hero-content-wrapper::before,
 .hero-content-wrapper::after {
     content: none;
@@ -921,9 +920,10 @@ a {
 }
 
 .label-text {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: #a7f3d0;
 }
@@ -940,9 +940,12 @@ a {
 }
 
 .title-primary {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
     font-size: clamp(2.75rem, 5.8vw, 4.5rem);
-    font-weight: 800;
-    letter-spacing: -0.05em;
+    font-weight: 900;
+    font-style: normal;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
     color: #ffffff;
     text-shadow:
         0 2px 8px rgba(0, 0, 0, 0.5),
@@ -954,9 +957,12 @@ a {
 }
 
 .title-accent {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
     font-size: clamp(2.8rem, 6vw, 4.65rem);
-    font-weight: 800;
-    letter-spacing: -0.05em;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     background: linear-gradient(
         120deg,
         #34d399 0%,
@@ -981,9 +987,11 @@ a {
 
 /* ── Description ── */
 .hero-description {
-    font-size: 1.08rem;
-    line-height: 1.85;
-    color: rgba(255, 255, 255, 0.92);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.93);
     max-width: 520px;
     margin-bottom: 30px;
     text-shadow:
@@ -995,8 +1003,11 @@ a {
 }
 
 .text-highlight {
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
     color: #6ee7b7;
-    font-weight: 600;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.2em;
     position: relative;
     white-space: nowrap;
 }
@@ -1026,8 +1037,10 @@ a {
     align-items: center;
     gap: 10px;
     padding: 15px 30px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.02em;
     border-radius: 999px;
     background: linear-gradient(120deg, #059669 0%, #10b981 40%, #34d399 100%);
     background-size: 200% 200%;
@@ -1090,8 +1103,10 @@ a {
     align-items: center;
     gap: 10px;
     padding: 15px 24px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 14px;
     font-weight: 600;
+    letter-spacing: 0.02em;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(8px);
@@ -1296,7 +1311,7 @@ a {
 
     .title-primary {
         font-size: 2.1rem;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.02em;
         text-shadow:
             0 2px 6px rgba(0, 0, 0, 0.6),
             0 6px 20px rgba(0, 0, 0, 0.4);
@@ -1304,7 +1319,7 @@ a {
 
     .title-accent {
         font-size: 2.15rem;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.02em;
     }
 
     .hero-description {
@@ -1438,7 +1453,6 @@ a {
         width: auto;
     }
 }
-
 
 
 /* ===============================
@@ -3197,7 +3211,7 @@ footer .col-md-6 .d-flex {
 }
 
 /* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
     .hero-bg-image img,
     .hero-label,
     .title-primary,
@@ -3227,7 +3241,7 @@ footer .col-md-6 .d-flex {
         transform: none !important;
         transition: none !important;
     }
-    
+     */
     .text-highlight::after {
         width: 100% !important;
     }
@@ -3240,7 +3254,7 @@ footer .col-md-6 .d-flex {
     html {
         scroll-behavior: auto;
     }
-}
+
 
 /* Print Styles */
 @media print {
