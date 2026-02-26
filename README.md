@@ -1,2 +1,0 @@
-# Bilalsha-Portfolio
-Portfolio
